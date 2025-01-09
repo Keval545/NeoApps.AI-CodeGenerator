@@ -641,13 +641,13 @@ WHERE
             //}
             return ans;
         }
-        static void mapFill(ref Dictionary<string, string> map, string connectionString, string projectName, string rabbitMQConn)
+        static void mapFill(ref Dictionary<string, string> map, string connectionString, string projectName, string backedUrl)
         {
             try
             {
                 map.Add("{projectName}", projectName);
                 map.Add("{connectionString}", connectionString);
-                // map.Add("{RabbitMQConnectionString}", rabbitMQConn);
+                // map.Add("{backedUrlectionString}", backedUrl);
             }
             catch (Exception ex)
             {
@@ -655,11 +655,11 @@ WHERE
                 errors_list.Add($"Error in MapFill: {ex.Message}");
             }
         }
-        static void ProcessController(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn)
+        static void ProcessController(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl)
         {
             try
             {
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 List<string> ans = getPrimaryKey(tbl, connection_string);
                 string url = "{", argu = "", param = "", validation = "";
@@ -696,11 +696,11 @@ WHERE
                 errors_list.Add($"Error in ProcessController: {ex.Message}");
             }
         }
-        static void ProcessInterfaceDataAccess(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn)
+        static void ProcessInterfaceDataAccess(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl)
         {
             try
             {
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 List<string> ans = getPrimaryKey(tbl, connection_string);
                 string primaryKeyListURL = "", primaryKeyList = "";
@@ -958,12 +958,12 @@ WHERE
                 errors_list.Add($"Error in ProcessDeleteQuery: {ex.Message}");
             }
         }
-        static void ProcessDataAccess(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn,string referencingColumnName)
+        static void ProcessDataAccess(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl,string referencingColumnName)
         {
             try
             {
                 List<string> PK = getPrimaryKey(tbl, connection_string);
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 map.Add("{selectAllRecordCountQuery}", "SELECT count(*) TotalCount FROM " + tbl + " t WHERE t.isActive=1");
                 map.Add("{selectAllRecordCountQueryByCreatedBy}", "SELECT count(*) TotalCount FROM " + tbl + " t WHERE t.isActive=1 AND t.createdBy=@ownername");
@@ -1014,11 +1014,11 @@ WHERE
                 errors_list.Add($"Error in ProcessDataAccess: {ex.Message}");
             }
         }
-        static void ProcessInterfaceManager(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn)
+        static void ProcessInterfaceManager(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl)
         {
             try
             {
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 List<string> ans = getPrimaryKey(tbl, connection_string);
                 string primaryKeyList = "";
@@ -1061,11 +1061,11 @@ WHERE
             }
             return ans;
         }
-        static void ProcessManager(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn)
+        static void ProcessManager(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl)
         {
             try
             {
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 List<string> PK = getPrimaryKey(tbl, connection_string);
                 string a = "", b = "", c = "";
@@ -1080,12 +1080,12 @@ WHERE
                 errors_list.Add($"Error in ProcessManager: {ex.Message}");
             }
         }
-        static void ProcessModel(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn)
+        static void ProcessModel(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl)
         {
             try
             {
                 List<string> PK = getPrimaryKey(tbl, connection_string);
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 string ans = "";
                 Dictionary<string, string> dict = getAllInfo(ref ans, tbl, connection_string, PK[0]);
@@ -1098,12 +1098,12 @@ WHERE
             }
         }
 
-        static string ProcessReportingModel(ref Dictionary<string, string> map, string connection_string, string tbl, string rabbitMQConn, HashSet<string> commoncolumn,string referencingColumnName)
+        static string ProcessReportingModel(ref Dictionary<string, string> map, string connection_string, string tbl, string backedUrl, HashSet<string> commoncolumn,string referencingColumnName)
         {
             try
             {
                 List<string> PK = getPrimaryKey(tbl, connection_string);
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 map.Add("{tableName}", char.ToUpper(tbl[0]) + tbl.Substring(1));
                 string ans = "";
                 Dictionary<string, string> dict = getAllInfoReporting(ref ans, tbl, connection_string, commoncolumn, referencingColumnName);
@@ -1174,7 +1174,7 @@ WHERE
 
             return new string(passwordArray);
         }
-        public static void ProcessFiles(string adminUsername, string adminPassword, string path, string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string rabbitMQConn, string noderedurl, string swgurl,string project_id)
+        public static void ProcessFiles(string adminUsername, string adminPassword, string path, string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string backedUrl, string noderedurl, string swgurl,string project_id)
         {
             try
             {
@@ -1458,7 +1458,7 @@ END;
                         Console.WriteLine("inside appsettings.txt");
                         map.Add("{projectName}", projectName);
                         map.Add("{connectionString}", connection_string);
-                        // map.Add("{RabbitMQConnectionString}", rabbitMQConn);
+                        // map.Add("{backedUrlectionString}", backedUrl);
                         map.Add("{NODERED_URL}", noderedurl);
                         map.Add("{SWAGGER_URL}", swgurl);
                         // map.Add("{redisConnectionString}", redisConn);
@@ -1483,7 +1483,7 @@ END;
                             string text = File.ReadAllText(file);
                             
                             
-                            ProcessController(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessController(ref map, connection_string, tbl, backedUrl);
                             
                             string relational = @"
         [CheckPermission(""{tableName}"", ""Get"")]
@@ -1681,7 +1681,7 @@ return Ok(Manager.GetAll{tableName}Reporting(ownername,page, itemsPerPage,orderM
                                 continue;
                             }
                             string text = File.ReadAllText(file);
-                            ProcessInterfaceDataAccess(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessInterfaceDataAccess(ref map, connection_string, tbl, backedUrl);
                             string relational = @"{tableName}RelationalModel Get{tableName}Relational(string ownername,{primaryKeyListParam});
                 List<{tableName}RelationalModel> GetAll{tableName}Relational(string ownername,int page=1,int itemsPerPage=100,List<OrderByModel> orderBy = null);";
                             ProcessSingleFile(ref relational, map);
@@ -1725,7 +1725,7 @@ List<{tableName}ReportingModel> GetAll{tableName}Reporting(string ownername,int 
                                 continue;
                             }
                             string text = File.ReadAllText(file);
-                            ProcessDataAccess(ref map, connection_string, tbl, rabbitMQConn,"");
+                            ProcessDataAccess(ref map, connection_string, tbl, backedUrl,"");
                             Boolean checkrelational = false;
                             Boolean checkreporting = false;
                             Boolean checktransactional = false;
@@ -2234,7 +2234,7 @@ List<{tableName}ReportingModel> GetAll{tableName}Reporting(string ownername,int 
                                 continue;
                             }
                             string text = File.ReadAllText(file);
-                            ProcessInterfaceManager(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessInterfaceManager(ref map, connection_string, tbl, backedUrl);
 
                             string relational = @"APIResponse Get{tableName}Relational(string ownername,{primaryKeyListParam});
 APIResponse GetAll{tableName}Relational(string ownername,int page, int itemsPerPage,List<OrderByModel> orderBy);";
@@ -2311,7 +2311,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                             map.Add("{addPrimaryKeyList}", temp);
                             text = text.Replace("{convertPrimaryKey}", temp);
                             text = text.Replace("{primaryKeyListAll}", primaryKeyListAll);
-                            ProcessManager(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessManager(ref map, connection_string, tbl, backedUrl);
 
                             string relational = @"
         public APIResponse Get{tableName}Relational(string ownername,{primaryKeyListParam})
@@ -2436,7 +2436,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                         foreach (string tbl in tables)
                         {
                             string text = File.ReadAllText(file);
-                            ProcessModel(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessModel(ref map, connection_string, tbl, backedUrl);
                             string name = char.ToUpper(tbl[0]) + tbl.Substring(1) + "Model.cs";
                             ProcessSingleFile(ref text, map);
                             File.WriteAllText(@dest + name, text);
@@ -2458,7 +2458,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                                 continue;
                             }
                             string text = File.ReadAllText(file);
-                            ProcessModel(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessModel(ref map, connection_string, tbl, backedUrl);
                             string name = char.ToUpper(tbl[0]) + tbl.Substring(1) + "RelationalModel.cs";
                             StringBuilder foreignKeyPropertiesBuilder = new StringBuilder();
 
@@ -2531,7 +2531,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                                 continue;
                             }
                             string text = File.ReadAllText(file);
-                            ProcessModel(ref map, connection_string, tbl, rabbitMQConn);
+                            ProcessModel(ref map, connection_string, tbl, backedUrl);
                             string name = char.ToUpper(tbl[0]) + tbl.Substring(1) + "ReportingModel.cs";
                             StringBuilder foreignKeyPropertiesBuilder = new StringBuilder();
 
@@ -2555,7 +2555,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                                     string referencedTableName = char.ToUpper(foreignKeyInfo.ReferencedTableName[0]) + foreignKeyInfo.ReferencedTableName.Substring(1);
                                     string referencingColumnName = foreignKeyInfo.ColumnName;
                                     Dictionary<string, string> reporting = new Dictionary<string, string>();
-                                    string propertyLine = ProcessReportingModel(ref reporting, connection_string, referencedTableName, rabbitMQConn, common_column, referencingColumnName);
+                                    string propertyLine = ProcessReportingModel(ref reporting, connection_string, referencedTableName, backedUrl, common_column, referencingColumnName);
                                     // Generate the property for the related entity
                                     foreignKeyPropertiesBuilder.AppendLine(propertyLine);
 
@@ -2587,7 +2587,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                         {
                             string text = File.ReadAllText(file);
                             string parent = tp.ParentEntity.ToLower();
-                            ProcessModel(ref map, connection_string, parent, rabbitMQConn);
+                            ProcessModel(ref map, connection_string, parent, backedUrl);
                             string name = char.ToUpper(parent[0]) + parent.Substring(1) + "TransactionalModel.cs";
                             StringBuilder foreignKeyPropertiesBuilder = new StringBuilder();
                             foreach (string rm in tp.transactional.Sequence)
@@ -2643,7 +2643,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                     }
                     else if (last == "startup.txt")
                     {
-                        ProcessStartup(ref map, connection_string, projectName, rabbitMQConn);
+                        ProcessStartup(ref map, connection_string, projectName, backedUrl);
                         string destination = path + $"../{fname}/{projectName}/DotNet_Output/solution/" + projectName + "/" + projectName + ".API/", text = File.ReadAllText(file);
                         ProcessSingleFile(ref text, map);
                         File.WriteAllText(@destination + "/Startup.cs", text);
@@ -2657,11 +2657,11 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                 errors_list.Add($"Error in ProcessFiles: {ex.Message}");
             }
         }
-        static void ProcessStartup(ref Dictionary<string, string> map, string connection_string, string projectName, string rabbitMQConn)
+        static void ProcessStartup(ref Dictionary<string, string> map, string connection_string, string projectName, string backedUrl)
         {
             try
             {
-                mapFill(ref map, connection_string, projectName, rabbitMQConn);
+                mapFill(ref map, connection_string, projectName, backedUrl);
                 string serviceDependency = "";
                 ProcessServiceDependency(ref serviceDependency, InterfacesAndImpl);
                 map.Add("{serviceDependency}", serviceDependency);
@@ -2994,7 +2994,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             string projectName = keyValueDict["projectName"];
             string DBexists = keyValueDict["DBexists"];
             string port = keyValueDict["port"];
-            string rabbitMQConn = keyValueDict["rabbitMQConn"];
+            string backedUrl = keyValueDict["backedUrl"];
             // redisConn = keyValueDict["redisConn"];
             string apiflowurl = null;
             if (keyValueDict.ContainsKey("apiflowurl"))
@@ -3030,27 +3030,27 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                 noderedurl = noderedurl.Replace("}", "");
             }
             // ... and so on
-            if (rabbitMQConn.Contains("amqp"))
+            if (backedUrl.Contains("amqp"))
             {
 
                 // Find the starting index of the username
-                int start = rabbitMQConn.IndexOf("user") + "user".Length;
+                int start = backedUrl.IndexOf("user") + "user".Length;
 
                 // Find the ending index of the username (before the ":")
-                int end = rabbitMQConn.IndexOf(":", start);
+                int end = backedUrl.IndexOf(":", start);
 
                 // Extract the username from the input string
-                string user = rabbitMQConn.Substring(start, end - start);
+                string user = backedUrl.Substring(start, end - start);
 
                 // Replace "user" with "password" in the input string
                 string modifiedString = "password" + user;
 
-                Console.WriteLine("Original String: " + rabbitMQConn);
+                Console.WriteLine("Original String: " + backedUrl);
                 Console.WriteLine("Username: " + username);
                 Console.WriteLine("Modified String: " + modifiedString);
-                string abc = rabbitMQConn.Replace("***", modifiedString);
-                rabbitMQConn = abc;
-                Console.WriteLine(rabbitMQConn);
+                string abc = backedUrl.Replace("***", modifiedString);
+                backedUrl = abc;
+                Console.WriteLine(backedUrl);
             }
 
             Console.WriteLine("project_id: " + project_id);
@@ -3064,7 +3064,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             Console.WriteLine("projectName: " + projectName);
             Console.WriteLine("DBexists: " + DBexists);
             Console.WriteLine("port: " + port);
-            Console.WriteLine("rabbitMQConn: " + rabbitMQConn);
+            Console.WriteLine("backedUrl: " + backedUrl);
             // Console.WriteLine("redisConn: " + redisConn);
             Console.WriteLine("apiflowurl: " + apiflowurl);
             Console.WriteLine("Technology_Frontend: " + Technology_Frontend);
@@ -3100,15 +3100,15 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                     {
                         if (projectType == "dnd")
                         {
-                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, rabbitMQConn, Technology_Frontend, Baackend_technology, projectType,front_template_url);
+                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backedUrl, Technology_Frontend, Baackend_technology, projectType,front_template_url);
                             string[] drpath = Directory.GetDirectories(@"../", (uid + "_*"));
                             string fname = drpath[0].Split("/").Last();
                             var files = Directory.GetFiles($"../{fname}/{projectName}/ReactTs_Output1", "*.env*");
                             foreach (string i in files)
                             {
                                 string text = File.ReadAllText(i);
-                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={rabbitMQConn}");
-                                string nodered_url = rabbitMQConn.Replace("/backend/v1/api", "/nodered");
+                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={backedUrl}");
+                                string nodered_url = backedUrl.Replace("/backend/v1/api", "/nodered");
                                 text = text.Replace(@"REACT_APP_NODERED_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_NODERED_BASE_URL={nodered_url}");
                                 File.WriteAllText(i, text);
                             }
@@ -3131,16 +3131,16 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                         {
                             string front_templateURL = "";
                             var textt = File.ReadAllText("./ReactTsTemplate2/ReactTsProject/src/components/addWorkflow/index.tsx");
-                            textt = textt.Replace("{rabbitMqConn}", rabbitMQConn);
+                            textt = textt.Replace("{backedUrl}", backedUrl);
                             File.WriteAllText("./ReactTsTemplate2/ReactTsProject/src/components/addWorkflow/index.tsx", textt);
-                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, rabbitMQConn, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
+                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backedUrl, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
                             string[] drpath = Directory.GetDirectories(@"../", (uid + "_*"));
                             string fname = drpath[0].Split("/").Last();
                             var files = Directory.GetFiles($"../{fname}/{projectName}/ReactTs_Output2", "*.env*");
                             foreach (string i in files)
                             {
                                 string text = File.ReadAllText(i);
-                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={rabbitMQConn}");
+                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={backedUrl}");
 
                                 File.WriteAllText(i, text);
                             }
@@ -3164,7 +3164,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
 
                         {
                             string front_templateURL = "";
-                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, rabbitMQConn, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
+                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backedUrl, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
                             string[] drpath = Directory.GetDirectories(@"../", (uid + "_*"));
                             string fname = drpath[0].Split("/").Last();
                             try
@@ -3187,14 +3187,14 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                         {
                             string front_templateURL = "";
                             projectType = "frontend";
-                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, rabbitMQConn, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
+                            ReactTsProject.ReactTs(server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backedUrl, Technology_Frontend, Baackend_technology, projectType, front_templateURL);
                             string[] drpath = Directory.GetDirectories(@"../", (uid + "_*"));
                             string fname = drpath[0].Split("/").Last();
                             var files = Directory.GetFiles($"../{fname}/{projectName}/ReactTs_Output3", "*.env*");
                             foreach (string i in files)
                             {
                                 string text = File.ReadAllText(i);
-                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={rabbitMQConn}");
+                                text = text.Replace(@"REACT_APP_API_BASE_URL=http://localhost:82/myeshop", $"REACT_APP_API_BASE_URL={backedUrl}");
 
                                 File.WriteAllText(i, text);
                             }
@@ -3245,7 +3245,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
                         kubectlProcess.BeginErrorReadLine();
                         string adminUsername = GenerateUsername();
                         string adminPassword = GeneratePassword();
-                        DotNet_MySQL.DotNet_MySQL_Template(adminUsername, adminPassword,server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, rabbitMQConn, Technology_Frontend, Baackend_technology, projectType, noderedurl, swgurl,project_id);
+                        DotNet_MySQL.DotNet_MySQL_Template(adminUsername, adminPassword,server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backedUrl, Technology_Frontend, Baackend_technology, projectType, noderedurl, swgurl,project_id);
                         string[] drpath = Directory.GetDirectories("/", (uid + "_*"));
                         string fname = drpath[0].Split("/").Last();
                         string[] upt = Directory.GetFiles($"/{fname}/{projectName}/zip/", "generatedBackend*.zip");
@@ -3498,7 +3498,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
     }
     class DotNet_MySQL : Program
     {
-        public static void DotNet_MySQL_Template(string adminUsername, string adminPassword, string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string rabbitMQConn, string frontEndTechnology, string backendTechnology, string projectType, string noderedurl, string swgurl,string project_id)
+        public static void DotNet_MySQL_Template(string adminUsername, string adminPassword, string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string backedUrl, string frontEndTechnology, string backendTechnology, string projectType, string noderedurl, string swgurl,string project_id)
         {
             try
             {
@@ -3715,7 +3715,7 @@ CREATE TABLE IF NOT EXISTS `workflow_trigger_conditions` (
                 //}
                 ProcessFiles( adminUsername,  adminPassword, @currentDir, server, uid, username, password, databaseName,
                              script, statusOfGeneration, projectName, DBexists, port,
-                             rabbitMQConn, noderedurl, swgurl,project_id);
+                             backedUrl, noderedurl, swgurl,project_id);
 
                 // ProcessFiles(@currentDir, "localhost", "", "root", "", "myeshopAPI",
                 // "http://localhost/sqlScript/myeshop.sql", "", "myeshopAPI", "YES",
@@ -3753,7 +3753,7 @@ CREATE TABLE IF NOT EXISTS `workflow_trigger_conditions` (
                     {
                         string text = File.ReadAllText(file);
                         text = text.Replace("{connectionString}", connection_string)
-                            .Replace("{RabbitMqURL}", rabbitMQConn);
+                            .Replace("{RabbitMqURL}", backedUrl);
                         File.WriteAllText(
                             new_dir5 + $"../{fname}/{projectName}/DotNet_Output/solution/" + projectName +
                                                        "/" + projectName +
@@ -4199,7 +4199,7 @@ CREATE TABLE IF NOT EXISTS `workflow_trigger_conditions` (
     }
     class ReactTsProject
     {
-        public static void ReactTs(string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string rabbitMQConn, string frontendTechnology, string backendTechnology, string projectType,string front_template_url)
+        public static void ReactTs(string server, string uid, string username, string password, string databaseName, string script, string statusOfGeneration, string projectName, string DBexists, string port, string backedUrl, string frontendTechnology, string backendTechnology, string projectType,string front_template_url)
         {
             try
             {
@@ -4513,7 +4513,7 @@ CREATE TABLE IF NOT EXISTS `workflow_trigger_conditions` (
                     Directory.CreateDirectory(des);
                     Functions p = new Functions(databaseName);
                     p.MakeAndCopyDirectory(src, des);
-                    p.ProcessFile(src, des, server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backendTechnology, projectType, swaggerurl : rabbitMQConn);
+                    p.ProcessFile(src, des, server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backendTechnology, projectType, swaggerurl : backedUrl);
                     var dirs = Directory.GetFiles(des, "*.*", SearchOption.AllDirectories);
                     foreach (string fileName in dirs)
                     {
@@ -4549,7 +4549,7 @@ CREATE TABLE IF NOT EXISTS `workflow_trigger_conditions` (
                     Directory.CreateDirectory(des);
                     Functions p = new Functions(databaseName);
                     //p.MakeAndCopyDirectory(src, des);
-                    p.ProcessFile(src, des, server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backendTechnology, projectType, swaggerurl: rabbitMQConn);
+                    p.ProcessFile(src, des, server, uid, username, password, databaseName, script, statusOfGeneration, projectName, DBexists, port, backendTechnology, projectType, swaggerurl: backedUrl);
                     var dirs = Directory.GetFiles(des, "*.*", SearchOption.AllDirectories);
                     foreach (string fileName in dirs)
                     {

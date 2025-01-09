@@ -3,10 +3,7 @@
     "NoCodeAppGenerator": {
       "commandName": "Project",
       "environmentVariables": {
-        "PARAMETER": "{project_id:1,server:localhost,uid:1,username:root,password:,databaseName:student,script:http://localhost/student.sql,statusOfGeneration:,projectName:StudentApp,DBexists:Yes,port:3306,rabbitMQConn:https://localhost:5001/v1/api/,apiflowurl:,fronttemplateurl:,Technology_Frontend:reactts,Backend_technology:,buttonClicked:generate,projectType:dnd,swgurl:,noderedurl:}"
-
-
-
+        "PARAMETER": "{project_id:1,server:localhost,uid:1,username:root,password:,databaseName:student,script:http://localhost/student.sql,statusOfGeneration:,projectName:StudentApp,DBexists:Yes,port:3306,backedUrl:https://localhost:5001/v1/api/,apiflowurl:,fronttemplateurl:,Technology_Frontend:reactts,Backend_technology:,buttonClicked:generate,projectType:dnd,swgurl:,noderedurl:}"
 
       },
         "remoteDebugEnabled": false
