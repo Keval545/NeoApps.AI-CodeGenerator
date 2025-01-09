@@ -18,7 +18,7 @@ using System.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using nkv.MicroService.Manager.RabitMQAPI.API;
+// using nkv.MicroService.Manager.RabitMQAPI.API;
 
 namespace nkv.MicroService.Consumer
 {
@@ -32,19 +32,19 @@ namespace nkv.MicroService.Consumer
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build();
             string connectionString = configuration.GetConnectionString("MySQLDatabase");
-            string rabbitMqConnection = configuration.GetConnectionString("RabitMQ");
+            // string rabbitMqConnection = configuration.GetConnectionString("RabitMQ");
             services.AddScoped<IRabitMQProducer, RabitMQProducer>();
             services.AddScoped<IRabitMQAsyncProducer, RabitMQAsyncProducer>();
             Console.WriteLine(connectionString);
             services.AddSingleton(_ => new MySqlDatabase(connectionString));
             //services.AddTransient(_ => new RabbitMqConnection(rabbitMqConnection));
             ConnectionFactory factory = new ConnectionFactory();
-            factory.Uri = new Uri(rabbitMqConnection);
+            // factory.Uri = new Uri(rabbitMqConnection);
             IConnection connection = factory.CreateConnection();
             services.AddSingleton<IConnection>(connection);
             var serviceProvider = services.BuildServiceProvider();
-            ConsumeMessage cm = new ConsumeMessage(connection);
-            cm.consumeMessage();
+            // ConsumeMessage cm = new ConsumeMessage(connection);
+            // cm.consumeMessage();
         }
         private static void ConfigureServices(IServiceCollection services)
         {
@@ -66,7 +66,7 @@ namespace nkv.MicroService.Consumer
             services.AddTransient<IWorkflow_runsManager, Workflow_runsManager>();
             services.AddTransient<IWorkflow_triggersManager, Workflow_triggersManager>();
             services.AddTransient<IWorkflow_trigger_conditionsManager, Workflow_trigger_conditionsManager>();
-            services.AddSingleton<IChannelManager, ChannelManager>();
+            // services.AddSingleton<IChannelManager, ChannelManager>();
             #endregion
         }
     }

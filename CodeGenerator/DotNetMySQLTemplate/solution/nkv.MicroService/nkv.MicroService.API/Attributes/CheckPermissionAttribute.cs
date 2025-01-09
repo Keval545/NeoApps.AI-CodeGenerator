@@ -28,8 +28,8 @@ namespace nkv.MicroService.API.Attributes
             var httpContextAccessor = context.HttpContext.RequestServices.GetService<IHttpContextAccessor>();
             var entitiesManager = context.HttpContext.RequestServices.GetService<IEntitiesManager>();
             var permissionmatrixManager = context.HttpContext.RequestServices.GetService<IPermissionmatrixManager>();
-            var redis = context.HttpContext.RequestServices.GetService<IConnectionMultiplexer>();
-            _db = redis.GetDatabase();
+            // var redis = context.HttpContext.RequestServices.GetService<IConnectionMultiplexer>();
+            // _db = redis.GetDatabase();
 
             var claimsIdentity = httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
 
@@ -45,97 +45,97 @@ namespace nkv.MicroService.API.Attributes
             string cachedPermission;
 
             bool isAuthorized = false;
-            bool makeDatabaseCall;
+            // bool makeDatabaseCall;
 
-            // To get last update time 
-            string timeKey = $"{permissionKey}:time";
-            string cachedTime = _db.StringGet(timeKey);
+            // // To get last update time 
+            // string timeKey = $"{permissionKey}:time";
+            // string cachedTime = _db.StringGet(timeKey);
 
-            // If cachedTime is null, then its first visit of user 
-            if (!string.IsNullOrEmpty(cachedTime))
-            {
-                DateTime currentDateTime = DateTime.Now;
-                DateTime lastUpdateTime = DateTime.ParseExact(cachedTime, "yyyy-MM-dd HH:mm:ss", null);
+            // // If cachedTime is null, then its first visit of user 
+            // if (!string.IsNullOrEmpty(cachedTime))
+            // {
+            //     DateTime currentDateTime = DateTime.Now;
+            //     DateTime lastUpdateTime = DateTime.ParseExact(cachedTime, "yyyy-MM-dd HH:mm:ss", null);
 
-                TimeSpan timeDifference = currentDateTime - lastUpdateTime;
+            //     TimeSpan timeDifference = currentDateTime - lastUpdateTime;
 
-                //After 30 minutes, we need to update redis
-                if (timeDifference > TimeSpan.FromMinutes(30))
-                {
-                    makeDatabaseCall = true;
-                }
-                else
-                {
-                    cachedPermission = _db.StringGet(permissionKey);
+            //     //After 30 minutes, we need to update redis
+            //     if (timeDifference > TimeSpan.FromMinutes(30))
+            //     {
+            //         makeDatabaseCall = true;
+            //     }
+            //     else
+            //     {
+            //         cachedPermission = _db.StringGet(permissionKey);
 
 
-                    if ((!string.IsNullOrEmpty(cachedPermission)) && (cachedPermission == "1"))
-                    {
-                        isAuthorized = true;
-                        makeDatabaseCall = false;
+            //         if ((!string.IsNullOrEmpty(cachedPermission)) && (cachedPermission == "1"))
+            //         {
+            //             isAuthorized = true;
+            //             makeDatabaseCall = false;
 
-                    }
-                    else
-                    {
-                        makeDatabaseCall = true;
-                    }
-                }
-            }
-            else
-            {
-                makeDatabaseCall = true;
-            }
+            //         }
+            //         else
+            //         {
+            //             makeDatabaseCall = true;
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     makeDatabaseCall = true;
+            // }
 
-            if (makeDatabaseCall)
-            {
-                // If the permission doesn't exist in cache, fetch it from the database
-                EntitiesModel entitiesModel = entitiesManager.GetEntitiesByName(_entityName);
-                PermissionMatrixModel PermissionMatrixModel = null;
-                if (entitiesModel != null)
-                {
-                    int entity_id = entitiesModel.entity_id;
-                    PermissionMatrixModel = permissionmatrixManager.HasEntityPermission(role_id, userID, entity_id);
-                }
+            // if (makeDatabaseCall)
+            // {
+            //     // If the permission doesn't exist in cache, fetch it from the database
+            //     EntitiesModel entitiesModel = entitiesManager.GetEntitiesByName(_entityName);
+            //     PermissionMatrixModel PermissionMatrixModel = null;
+            //     if (entitiesModel != null)
+            //     {
+            //         int entity_id = entitiesModel.entity_id;
+            //         PermissionMatrixModel = permissionmatrixManager.HasEntityPermission(role_id, userID, entity_id);
+            //     }
 
-                if (PermissionMatrixModel != null)
-                {
-                    switch (_actionType.ToLower())
-                    {
-                        case "get":
-                            isAuthorized = PermissionMatrixModel.can_read == 1;
-                            break;
-                        case "post":
-                            isAuthorized = PermissionMatrixModel.can_write == 1;
-                            break;
-                        case "put":
-                            isAuthorized = PermissionMatrixModel.can_update == 1;
-                            break;
-                        case "delete":
-                            isAuthorized = PermissionMatrixModel.can_delete == 1;
-                            break;
-                        default:
-                            isAuthorized = false;
-                            break;
-                    }
-                }
-                else
-                {
-                    isAuthorized = false;
-                }
+            //     if (PermissionMatrixModel != null)
+            //     {
+            //         switch (_actionType.ToLower())
+            //         {
+            //             case "get":
+            //                 isAuthorized = PermissionMatrixModel.can_read == 1;
+            //                 break;
+            //             case "post":
+            //                 isAuthorized = PermissionMatrixModel.can_write == 1;
+            //                 break;
+            //             case "put":
+            //                 isAuthorized = PermissionMatrixModel.can_update == 1;
+            //                 break;
+            //             case "delete":
+            //                 isAuthorized = PermissionMatrixModel.can_delete == 1;
+            //                 break;
+            //             default:
+            //                 isAuthorized = false;
+            //                 break;
+            //         }
+            //     }
+            //     else
+            //     {
+            //         isAuthorized = false;
+            //     }
 
-                // Store the permission in the cache for future requests
-                _db.StringSet(permissionKey, isAuthorized ? "1" : "0");
-                DateTime currentDateTime = DateTime.Now;
-                _db.StringSet(timeKey, currentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            //     // Store the permission in the cache for future requests
+            //     _db.StringSet(permissionKey, isAuthorized ? "1" : "0");
+            //     DateTime currentDateTime = DateTime.Now;
+            //     _db.StringSet(timeKey, currentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
-            }
+            // }
 
-            // If permission check fails, short-circuit the request:
-            if (!isAuthorized)
-            {
-                context.Result = new UnauthorizedResult();
-                return;
-            }
+            // // If permission check fails, short-circuit the request:
+            // if (!isAuthorized)
+            // {
+            //     context.Result = new UnauthorizedResult();
+            //     return;
+            // }
 
             // If permission check succeeds, proceed with the next action:
             await next();

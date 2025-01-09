@@ -17,11 +17,9 @@
   },
   "ConnectionStrings": {
     "MySQLDatabase": "{connectionString}",
-    "RabitMQ": "{RabbitMQConnectionString}",
 "NodeRedEndPoint": "{NODERED_URL}/flow",
     "GlobalVariableName": "token",
-    "TokenAPI": "{SWAGGER_URL}/Token",
-    "Redis": "{redisConnectionString}"
+    "TokenAPI": "{SWAGGER_URL}/Token"
   },
   "AllowedHosts": "*"
 }

@@ -1,4 +1,4 @@
-﻿using {projectName}.Manager.RabitMQAPI.API;
+﻿//using {projectName}.Manager.RabitMQAPI.API;
 using {projectName}.DataAccess.Interface;
 using {projectName}.Manager.Interface;
 using {projectName}.Model;
@@ -12,11 +12,11 @@ namespace {projectName}.Manager.Impl
     public class {tableName}Manager : I{tableName}Manager
     {
         private readonly I{tableName}DataAccess DataAccess = null;
-	private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
-        public {tableName}Manager(I{tableName}DataAccess dataAccess,IRabitMQAsyncProducer rabitMQAsyncProducer)
+	//private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
+        public {tableName}Manager(I{tableName}DataAccess dataAccess)
         {
             DataAccess = dataAccess;
-	    _rabitMQAsyncProducer = rabitMQAsyncProducer;
+	    
         }
 
         public APIResponse Get{tableName}(int page = 1, int itemsPerPage = 100,List<OrderByModel> orderBy = null)
@@ -86,7 +86,7 @@ namespace {projectName}.Manager.Impl
             {
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 {primaryKeyListSingle}
- 		_rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name,token);
+ 		//_rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name,token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Updated");
             }
             else
@@ -101,7 +101,7 @@ namespace {projectName}.Manager.Impl
             if (result > 0)
             {
 		{addPrimaryKeyList}
-		_rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name,token);
+		//_rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name,token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Created", result);
             }
             else
@@ -147,7 +147,7 @@ namespace {projectName}.Manager.Impl
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 {primaryKeyListSingle}
 		var className = GetType().Name.Replace("Manager", "Model");
- 		_rabitMQAsyncProducer.SendAsyncMessage(primary_key, className,token);
+ 		//_rabitMQAsyncProducer.SendAsyncMessage(primary_key, className,token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else
@@ -161,7 +161,7 @@ namespace {projectName}.Manager.Impl
             var result = DataAccess.DeleteMultiple{tableName}(deleteParam, andOr);
             if (result)
             {
-                _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name,token);
+               // _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name,token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else

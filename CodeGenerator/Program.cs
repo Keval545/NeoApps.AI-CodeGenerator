@@ -11,8 +11,8 @@ using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NoCodeAppGenerator.GeneratorManagers;
-using NoCodeAppGenerator.RabbitmqProducer;
+// using NoCodeAppGenerator.GeneratorManagers;
+// using NoCodeAppGenerator.RabbitmqProducer;
 using Org.BouncyCastle.Crypto;
 using RabbitMQ.Client;
 using ReactJsProjectDemo;
@@ -647,7 +647,7 @@ WHERE
             {
                 map.Add("{projectName}", projectName);
                 map.Add("{connectionString}", connectionString);
-                map.Add("{RabbitMQConnectionString}", rabbitMQConn);
+                // map.Add("{RabbitMQConnectionString}", rabbitMQConn);
             }
             catch (Exception ex)
             {
@@ -1458,7 +1458,7 @@ END;
                         Console.WriteLine("inside appsettings.txt");
                         map.Add("{projectName}", projectName);
                         map.Add("{connectionString}", connection_string);
-                        map.Add("{RabbitMQConnectionString}", rabbitMQConn);
+                        // map.Add("{RabbitMQConnectionString}", rabbitMQConn);
                         map.Add("{NODERED_URL}", noderedurl);
                         map.Add("{SWAGGER_URL}", swgurl);
                         map.Add("{redisConnectionString}", redisConn);
@@ -2391,7 +2391,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             if (result > 0)
             {
 		{addPrimaryKeyList}
-		_rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name);
+		// _rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name);
                 return new APIResponse(ResponseCode.SUCCESS, ""Record Created"", result);
             }
             else
@@ -2409,7 +2409,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             {
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 {primaryKeyListSingle}
- 		_rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name);
+ 		// _rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name);
                 return new APIResponse(ResponseCode.SUCCESS, ""Record Updated"");
             }
             else

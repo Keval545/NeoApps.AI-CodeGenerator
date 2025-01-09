@@ -1,4 +1,4 @@
-using nkv.MicroService.Manager.RabitMQAPI.API;
+// using nkv.MicroService.Manager.RabitMQAPI.API;
 using nkv.MicroService.DataAccess.Interface;
 using nkv.MicroService.Manager.Interface;
 using nkv.MicroService.Model;
@@ -12,11 +12,10 @@ namespace nkv.MicroService.Manager.Impl
     public class EntitiesManager : IEntitiesManager
     {
         private readonly IEntitiesDataAccess DataAccess = null;
-        private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
-        public EntitiesManager(IEntitiesDataAccess dataAccess, IRabitMQAsyncProducer rabitMQAsyncProducer)
+        // private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
+        public EntitiesManager(IEntitiesDataAccess dataAccess)
         {
             DataAccess = dataAccess;
-            _rabitMQAsyncProducer = rabitMQAsyncProducer;
         }
 
         public APIResponse GetEntities(int page = 1, int itemsPerPage = 100, List<OrderByModel> orderBy = null)
@@ -68,7 +67,7 @@ namespace nkv.MicroService.Manager.Impl
             {
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 primary_key.Add("entity_id", entity_id);
-                _rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Updated");
             }
             else
@@ -84,7 +83,7 @@ namespace nkv.MicroService.Manager.Impl
             {
                 model.entity_id = Convert.ToInt32(result);
 
-                _rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Created", result);
             }
             else
@@ -116,7 +115,7 @@ namespace nkv.MicroService.Manager.Impl
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 primary_key.Add("entity_id", entity_id);
                 var className = GetType().Name.Replace("Manager", "Model");
-                _rabitMQAsyncProducer.SendAsyncMessage(primary_key, className, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(primary_key, className, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else
@@ -130,7 +129,7 @@ namespace nkv.MicroService.Manager.Impl
             var result = DataAccess.DeleteMultipleEntities(deleteParam, andOr);
             if (result)
             {
-                _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else

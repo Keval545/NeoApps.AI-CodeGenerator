@@ -1,4 +1,4 @@
-using nkv.MicroService.Manager.RabitMQAPI.API;
+// using nkv.MicroService.Manager.RabitMQAPI.API;
 using nkv.MicroService.DataAccess.Interface;
 using nkv.MicroService.Manager.Interface;
 using nkv.MicroService.Model;
@@ -12,11 +12,10 @@ namespace nkv.MicroService.Manager.Impl
     public class PermissionmatrixManager : IPermissionmatrixManager
     {
         private readonly IPermissionmatrixDataAccess DataAccess = null;
-        private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
-        public PermissionmatrixManager(IPermissionmatrixDataAccess dataAccess, IRabitMQAsyncProducer rabitMQAsyncProducer)
+        // private readonly IRabitMQAsyncProducer _rabitMQAsyncProducer;
+        public PermissionmatrixManager(IPermissionmatrixDataAccess dataAccess)
         {
             DataAccess = dataAccess;
-            _rabitMQAsyncProducer = rabitMQAsyncProducer;
         }
 
         public APIResponse GetPermissionmatrix(int page = 1, int itemsPerPage = 100, List<OrderByModel> orderBy = null)
@@ -70,7 +69,7 @@ namespace nkv.MicroService.Manager.Impl
             {
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 primary_key.Add("permission_id", permission_id);
-                _rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(model, primary_key, model.GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Updated");
             }
             else
@@ -98,7 +97,7 @@ namespace nkv.MicroService.Manager.Impl
             {
                 model.permission_id = Convert.ToInt32(result);
 
-                _rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(model, model.GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Created", result);
             }
             else
@@ -130,7 +129,7 @@ namespace nkv.MicroService.Manager.Impl
                 Dictionary<string, int> primary_key = new Dictionary<string, int>();
                 primary_key.Add("permission_id", permission_id);
                 var className = GetType().Name.Replace("Manager", "Model");
-                _rabitMQAsyncProducer.SendAsyncMessage(primary_key, className, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(primary_key, className, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else
@@ -144,7 +143,7 @@ namespace nkv.MicroService.Manager.Impl
             var result = DataAccess.DeleteMultiplePermissionmatrix(deleteParam, andOr);
             if (result)
             {
-                _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name, token);
+                // _rabitMQAsyncProducer.SendAsyncMessage(deleteParam, GetType().Name, token);
                 return new APIResponse(ResponseCode.SUCCESS, "Record Deleted");
             }
             else
