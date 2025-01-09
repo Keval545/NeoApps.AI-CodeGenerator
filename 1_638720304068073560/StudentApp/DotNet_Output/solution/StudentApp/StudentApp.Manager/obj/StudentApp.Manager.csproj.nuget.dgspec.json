@@ -1,0 +1,358 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Manager\\StudentApp.Manager.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\StudentApp.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\StudentApp.DataAccess.csproj",
+        "projectName": "StudentApp.DataAccess",
+        "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\StudentApp.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
+            "projectReferences": {
+              "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj": {
+                "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj"
+              },
+              "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\StudentApp.Utility.csproj": {
+                "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\StudentApp.Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.2.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.20, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Manager\\StudentApp.Manager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Manager\\StudentApp.Manager.csproj",
+        "projectName": "StudentApp.Manager",
+        "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Manager\\StudentApp.Manager.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Manager\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
+            "projectReferences": {
+              "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\StudentApp.DataAccess.csproj": {
+                "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.DataAccess\\StudentApp.DataAccess.csproj"
+              },
+              "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj": {
+                "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.2.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj",
+        "projectName": "StudentApp.Model",
+        "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\StudentApp.Model.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
+          "dependencies": {
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.2.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\StudentApp.Utility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\StudentApp.Utility.csproj",
+        "projectName": "StudentApp.Utility",
+        "projectPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\StudentApp.Utility.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Final project\\NeoApps.AI-CodeGenerator\\1_638720304068073560\\StudentApp\\DotNet_Output\\solution\\StudentApp\\StudentApp.Utility\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.2.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.20, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

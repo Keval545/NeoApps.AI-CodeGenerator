@@ -1,0 +1,13 @@
+2025-01-09 15:58:44,460 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2025-01-09 15:58:44,463 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 3.7271ms
+2025-01-09 15:58:44,524 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - -
+2025-01-09 15:58:44,524 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - -
+2025-01-09 15:58:44,524 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - -
+2025-01-09 15:58:44,532 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-01-09 15:58:44,535 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-01-09 15:58:44,535 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - - - 200 312163 application/javascript 10.7689ms
+2025-01-09 15:58:44,536 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - - - 200 144929 text/css 11.4936ms
+2025-01-09 15:58:44,608 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-01-09 15:58:44,608 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui-bundle.js - - - 200 1061536 application/javascript 83.5678ms
+2025-01-09 15:58:45,115 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2025-01-09 15:58:45,254 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 139.7944ms

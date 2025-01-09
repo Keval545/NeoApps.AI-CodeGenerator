@@ -1,0 +1,50 @@
+import { AutoCompleteComponent } from '@syncfusion/ej2-react-dropdowns';
+import { useEffect, useRef, useState } from 'react';
+import { getAll{modelName} } from 'services/{tableName}Service';
+import './style.css'
+import { DndProvider, useDrag } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
+export const AutoComplete: React.FC = () => {   
+
+    const [data, setData] = useState([]);
+    const [content, setContent] = useState([]);
+
+    useEffect(() => {
+        getAll{modelName}(1, 100).then(
+            data => {
+                setData(data.data.document.records);
+                setContent((data.data.document.records).map(obj => obj.{secondaryKeyList}));
+                console.log("data :- ", data);
+            }
+        )
+    }, [])
+
+    
+    const [{ isDragging }, drag] = useDrag({
+        type: "AUTOCOMPLETE",
+        item: { type: "AUTOCOMPLETE" },
+        collect: monitor => ({
+            isDragging: monitor.isDragging()
+        })
+    });
+    const opacity = isDragging ? 0.3 : 1;
+    drag(ref);
+
+    return (
+        <DndProvider backend={HTML5Backend}>
+
+            <div ref={ref} style={{ opacity }}>
+                <h1>Autocompletion</h1>
+                <AutoCompleteComponent id="atcelement"
+                    dataSource={content}
+                    placeholder="Type a Field Name"
+                    width="350px"
+                // itemTemplate={itemTemplate = itemTemplate.bind(this)}
+                />
+                <hr />
+            </div>
+        </DndProvider>
+    )
+}
+

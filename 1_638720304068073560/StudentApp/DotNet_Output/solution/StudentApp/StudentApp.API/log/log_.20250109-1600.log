@@ -1,0 +1,20 @@
+2025-01-09 16:00:16,598 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 OPTIONS https://localhost:5001/v1/api/dnd_ui_versions/2 - -
+2025-01-09 16:00:16,745 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+2025-01-09 16:00:16,780 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 OPTIONS https://localhost:5001/v1/api/dnd_ui_versions/2 - - - 204 - - 182.3927ms
+2025-01-09 16:00:16,830 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/v1/api/dnd_ui_versions/2 - -
+2025-01-09 16:00:16,840 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+2025-01-09 16:00:17,923 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+2025-01-09 16:00:18,107 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetById", controller = "Dnd_ui_versions"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetById(Int32) on controller StudentApp.API.Controllers.Dnd_ui_versionsController (StudentApp.API).
+2025-01-09 16:00:20,795 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor - Executing OkObjectResult, writing value of type 'StudentApp.Utility.APIResponse'.
+2025-01-09 16:00:20,858 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker - Executed action StudentApp.API.Controllers.Dnd_ui_versionsController.GetById (StudentApp.API) in 2718.9901ms
+2025-01-09 16:00:20,858 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/v1/api/dnd_ui_versions/2 - - - 200 - application/json;+charset=utf-8 4028.4585ms
+2025-01-09 16:00:20,874 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 OPTIONS https://localhost:5001/v1/api/dnd_ui_versions/1 - -
+2025-01-09 16:00:20,874 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+2025-01-09 16:00:20,875 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 OPTIONS https://localhost:5001/v1/api/dnd_ui_versions/1 - - - 204 - - 1.1458ms
+2025-01-09 16:00:20,878 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/2 GET https://localhost:5001/v1/api/dnd_ui_versions/1 - -
+2025-01-09 16:00:20,879 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+2025-01-09 16:00:20,889 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+2025-01-09 16:00:20,890 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetById", controller = "Dnd_ui_versions"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetById(Int32) on controller StudentApp.API.Controllers.Dnd_ui_versionsController (StudentApp.API).
+2025-01-09 16:00:20,896 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor - Executing OkObjectResult, writing value of type 'StudentApp.Utility.APIResponse'.
+2025-01-09 16:00:20,896 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker - Executed action StudentApp.API.Controllers.Dnd_ui_versionsController.GetById (StudentApp.API) in 5.9839ms
+2025-01-09 16:00:20,897 [.NET ThreadPool Worker] INFO  Microsoft.AspNetCore.Hosting.Diagnostics - Request finished HTTP/2 GET https://localhost:5001/v1/api/dnd_ui_versions/1 - - - 200 - application/json;+charset=utf-8 18.7269ms

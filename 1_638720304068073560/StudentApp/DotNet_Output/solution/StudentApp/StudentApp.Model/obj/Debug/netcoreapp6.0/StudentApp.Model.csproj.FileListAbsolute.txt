@@ -1,0 +1,13 @@
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\bin\Debug\netcoreapp6.0\StudentApp.Model.deps.json
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\bin\Debug\netcoreapp6.0\StudentApp.Model.dll
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\bin\Debug\netcoreapp6.0\StudentApp.Model.pdb
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.csproj.AssemblyReference.cache
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.AssemblyInfoInputs.cache
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.AssemblyInfo.cs
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.csproj.CoreCompileInputs.cache
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.sourcelink.json
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.dll
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\refint\StudentApp.Model.dll
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\StudentApp.Model.pdb
+C:\Projects\Final project\NeoApps.AI-CodeGenerator\1_638720304068073560\StudentApp\DotNet_Output\solution\StudentApp\StudentApp.Model\obj\Debug\netcoreapp6.0\ref\StudentApp.Model.dll
