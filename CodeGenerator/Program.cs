@@ -344,7 +344,7 @@ namespace NoCodeAppGenerator
         }
 
 
-        public static string redisConn;
+        // public static string redisConn;
         public static List<string> errors_list = new List<string>();
         static private Dictionary<string, string> InterfacesAndImpl = new Dictionary<string, string>();
         public static List<string> GetTables(string connection_string)
@@ -1461,7 +1461,7 @@ END;
                         // map.Add("{RabbitMQConnectionString}", rabbitMQConn);
                         map.Add("{NODERED_URL}", noderedurl);
                         map.Add("{SWAGGER_URL}", swgurl);
-                        map.Add("{redisConnectionString}", redisConn);
+                        // map.Add("{redisConnectionString}", redisConn);
                         map.Add("{SubBucketName}", projectName + "_" + DateTime.Now.Ticks);
                         string destination = path + $"../{fname}/{projectName}/DotNet_Output/solution/" + projectName + "/" + projectName + ".API/", text = File.ReadAllText(file);
                         ProcessSingleFile(ref text, map);
@@ -2995,7 +2995,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             string DBexists = keyValueDict["DBexists"];
             string port = keyValueDict["port"];
             string rabbitMQConn = keyValueDict["rabbitMQConn"];
-            redisConn = keyValueDict["redisConn"];
+            // redisConn = keyValueDict["redisConn"];
             string apiflowurl = null;
             if (keyValueDict.ContainsKey("apiflowurl"))
             {
@@ -3065,7 +3065,7 @@ APIResponse Update{tableName}Transactional({primaryKeyListParam},{tableName}Tran
             Console.WriteLine("DBexists: " + DBexists);
             Console.WriteLine("port: " + port);
             Console.WriteLine("rabbitMQConn: " + rabbitMQConn);
-            Console.WriteLine("redisConn: " + redisConn);
+            // Console.WriteLine("redisConn: " + redisConn);
             Console.WriteLine("apiflowurl: " + apiflowurl);
             Console.WriteLine("Technology_Frontend: " + Technology_Frontend);
             Console.WriteLine("Backend_technology: " + Baackend_technology);
